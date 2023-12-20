@@ -6,10 +6,10 @@ with open("README.md", "r", encoding="utf-8") as fh:
 with open('requirements.txt', 'r') as file:
     requirements = file.read().splitlines()
 
-PACKAGE_DIR = {"": "img_doc"}
-PACKAGES = setuptools.find_packages(include=["img_doc", "img_doc.*"])
+PACKAGE_DIR = {"": "src"}
+PACKAGES = setuptools.find_packages(where="src")
 setuptools.setup(
-    name="image_word_extractor",
+    name="imgdoc",
     version="0.0.2",
     author="Dunn Kopylov",
     author_email="38dunn@gmail.com",
@@ -19,6 +19,5 @@ setuptools.setup(
     install_requires=requirements,
     package_dir=PACKAGE_DIR,
     packages=PACKAGES,
-
     python_requires=">=3.9"
 )
