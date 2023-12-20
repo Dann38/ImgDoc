@@ -24,6 +24,11 @@ class ImageSegment(ABC):
     def get_width(self):
         return self.x_bottom_right - self.x_top_left
 
+    def get_center(self):
+        x_c = round((self.x_top_left + self.x_bottom_right) / 2)
+        y_c = round((self.y_top_left + self.y_bottom_right) / 2)
+        return x_c, y_c
+
     def set_segment_2p(self, dict_2point: Dict):
         self.x_top_left = dict_2point["x_top_left"]
         self.y_top_left = dict_2point["y_top_left"]
@@ -33,8 +38,8 @@ class ImageSegment(ABC):
     def set_segment_p_size(self, dict_2point: Dict):
         self.x_top_left = dict_2point["x_top_left"]
         self.y_top_left = dict_2point["y_top_left"]
-        self.x_bottom_right = dict_2point["width"] - self.x_top_left
-        self.y_bottom_right = dict_2point["height"] - self.y_top_left
+        self.x_bottom_right = dict_2point["width"] + self.x_top_left
+        self.y_bottom_right = dict_2point["height"] + self.y_top_left
 
     def set_segment_max_segments(self, segments: List["ImageSegment"]):
         list_x_top_left = [segment.x_top_left for segment in segments]
@@ -45,3 +50,5 @@ class ImageSegment(ABC):
         self.y_top_left = min(list_y_top_left)
         self.x_bottom_right = max(list_x_bottom_right)
         self.y_bottom_right = max(list_y_bottom_right)
+
+
