@@ -15,12 +15,16 @@ class Block:
 
     def intersection(self, block):
         seg = block.segment
-        points1 = [(seg.x_top_left, seg.y_top_left), (seg.x_top_left, seg.y_bottom_right),
-                   (seg.x_bottom_right, seg.y_top_left), (seg.x_bottom_right, seg.y_bottom_right)]
+        points1 = [(seg.x_top_left, seg.y_top_left),
+                   (seg.x_top_left, seg.y_bottom_right),
+                   (seg.x_bottom_right, seg.y_top_left),
+                   (seg.x_bottom_right, seg.y_bottom_right)]
 
         new_seg = self.segment
-        points2 = [(new_seg.x_top_left, new_seg.y_top_left), (new_seg.x_top_left, new_seg.y_bottom_right),
-                   (new_seg.x_bottom_right, new_seg.y_top_left), (new_seg.x_bottom_right, new_seg.y_bottom_right)]
+        points2 = [(new_seg.x_top_left, new_seg.y_top_left),
+                   (new_seg.x_top_left, new_seg.y_bottom_right),
+                   (new_seg.x_bottom_right, new_seg.y_top_left),
+                   (new_seg.x_bottom_right, new_seg.y_bottom_right)]
 
         for p in points1:
             if (new_seg.x_top_left < p[0]) and (new_seg.x_bottom_right > p[0]) and \

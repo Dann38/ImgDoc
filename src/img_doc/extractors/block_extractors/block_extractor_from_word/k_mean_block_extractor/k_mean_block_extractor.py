@@ -17,8 +17,8 @@ class KMeanBlockExtractor(BaseBlockExtractorFromWord):
             block.set_words(words_r)
             list_block.append(block)
 
-        list_block = self.join_intersect_blocks(list_block)
-        return list_block
+        join_intersect_block = self.join_intersect_blocks(list_block)
+        return join_intersect_block
 
     def get_index_neighbors_word(self, words, max_level=3):
         hash_matrix, fun_hashkey = self.get_hash_matrix(words)
