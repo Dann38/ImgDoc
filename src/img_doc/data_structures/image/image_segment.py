@@ -18,6 +18,14 @@ class ImageSegment(ABC):
         w1 = self.x_bottom_right
         return img[h0:h1, w0:w1, :] if len(img.shape) == 3 else img[h0:h1, w0:w1]
 
+    def get_segment_2p(self):
+        return {
+            "x_top_left": self.x_top_left,
+            "x_bottom_right": self.x_bottom_right,
+            "y_top_left": self.y_top_left,
+            "y_bottom_right": self.y_bottom_right
+        }
+
     def get_height(self):
         return self.y_bottom_right-self.y_top_left
 
@@ -50,5 +58,3 @@ class ImageSegment(ABC):
         self.y_top_left = min(list_y_top_left)
         self.x_bottom_right = max(list_x_bottom_right)
         self.y_bottom_right = max(list_y_bottom_right)
-
-
