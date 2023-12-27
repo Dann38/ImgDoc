@@ -9,10 +9,15 @@ class BaseBlockExtractorFromWord(ABC):
         pass
 
     def join_intersect_blocks(self, blocks: List[Block]) -> List[Block]:
-        new_blocks = []
-
-        for block in blocks:
-            self.__add_block_in_new_list(new_blocks, block)
+        new_blocks = blocks
+        run = True
+        while run:
+            old_blocks = new_blocks
+            new_blocks = []
+            for block in old_blocks:
+                self.__add_block_in_new_list(new_blocks, block)
+            if len(new_blocks) == len(old_blocks):
+                run = False
         return new_blocks
 
 
