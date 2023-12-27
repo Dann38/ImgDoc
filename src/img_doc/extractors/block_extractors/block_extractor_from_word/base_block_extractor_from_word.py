@@ -1,11 +1,11 @@
 from abc import ABC, abstractmethod
 from img_doc.data_structures import Word, Block
-from typing import List
+from typing import List, Dict
 
 
 class BaseBlockExtractorFromWord(ABC):
     @abstractmethod
-    def extract_from_word(self, words: List[Word]) -> List[Block]:
+    def extract_from_word(self, words: List[Word], history: Dict) -> List[Block]:
         pass
 
     def join_intersect_blocks(self, blocks: List[Block]) -> List[Block]:

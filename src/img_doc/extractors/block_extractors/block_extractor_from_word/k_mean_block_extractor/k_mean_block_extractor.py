@@ -1,10 +1,19 @@
 from ..base_block_extractor_from_word import *
 from img_doc.data_structures import ImageSegment, Word, Block, Graph
 import numpy as np
-
+from typing import Dict
 
 class KMeanBlockExtractor(BaseBlockExtractorFromWord):
-    def extract_from_word(self, words: List[Word]) -> List[Block]:
+    def extract_from_word(self, words: List[Word], history: Dict) -> List[Block]:
+        """
+        history:
+        join_blocks,
+        neighbors,
+        distans,
+        dist_word,
+        graph,
+        no_join_blocks
+        """
         neighbors = self.get_index_neighbors_word(words)
         distans = self.get_distans(neighbors, words)
         dist_word, dist_row = self.get_standart_distant(distans)
@@ -18,6 +27,21 @@ class KMeanBlockExtractor(BaseBlockExtractorFromWord):
             list_block.append(block)
 
         join_intersect_block = self.join_intersect_blocks(list_block)
+
+        if "join_blocks" in history.keys():
+            history["join_blocks"] = join_intersect_block
+        if "neighbors" in history.keys():
+            history["neighbors"] = neighbors
+        if "distans" in history.keys():
+            history["distans"] = distans
+        if "dist_word" in history.keys():
+            history["dist_word"] = dist_word
+        if "dist_row" in history.keys():
+            history["dist_word"] = dist_row
+        if "graph" in history.keys():
+            history["graph"] = graph
+        if "no_join_blocks" in history.keys():
+            history["no_join_blocks"] = list_block
         return join_intersect_block
 
     def get_index_neighbors_word(self, words, max_level=3):
